@@ -1,0 +1,56 @@
+from Arm_Lib import Arm_Device
+import time
+
+
+class ArmMotor:
+
+    MAX_ANGLE = 180
+    MIN_ANGLE = 0
+    HOME_ANGLE = 90
+
+    def __init__(self):
+
+        self.Arm = Arm_Device()
+
+        self.s_time = 500
+        self.s_step = 1
+
+        self.map_index_angle = {
+            1: ArmMotor.HOME_ANGLE,
+            2: ArmMotor.HOME_ANGLE,
+            3: ArmMotor.HOME_ANGLE,
+            4: ArmMotor.HOME_ANGLE,
+            5: ArmMotor.HOME_ANGLE,
+            6: ArmMotor.HOME_ANGLE,
+        }
+
+    def move(self, index, more_or_less):
+
+        if more_or_less:
+            self.map_index_angle[index] += self.s_step
+        else:
+            self.map_index_angle[index] -= self.s_step
+
+        if self.map_index_angle[index] > ArmMotor.MAX_ANGLE:
+            self.map_index_angle[index] = ArmMotor.MAX_ANGLE
+        elif self.map_index_angle[index] < ArmMotor.MIN_ANGLE:
+            self.map_index_angle[index] = ArmMotor.MIN_ANGLE
+
+        self.Arm.Arm_serial_servo_write(index, self.map_index_angle[index], self.s_time)
+        time.sleep(0.01)
+
+    def home(self):
+
+        self.map_index_angle = {
+            1: ArmMotor.HOME_ANGLE,
+            2: ArmMotor.HOME_ANGLE,
+            3: ArmMotor.HOME_ANGLE,
+            4: ArmMotor.HOME_ANGLE,
+            5: ArmMotor.HOME_ANGLE,
+            6: ArmMotor.HOME_ANGLE,
+        }
+
+        self.Arm.Arm_serial_servo_write6(ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, 1000)
+        time.sleep(1)
+
+
