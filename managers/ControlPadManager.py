@@ -1,6 +1,7 @@
 from actuators.ArmMotor import ArmMotor
 import time
 import ipywidgets.widgets as widgets
+import threading
 
 
 class ControlPadManager:
@@ -12,7 +13,15 @@ class ControlPadManager:
 
     def start_control(self):
 
-        while 1:
+        # Enable the thread of the handle to control the robotic arm in real time by running the following cell code
+        # After waiting for the handle control thread to start, you can control the robotic arm through the handle.
+        thread = threading.Thread(target=self.infinite_control_loop)
+        thread.daemon = True
+        thread.start()
+
+    def infinite_control_loop(self):
+
+        while True:
             self.check_controller_and_move_arm()
 
     def check_controller_and_move_arm(self):
