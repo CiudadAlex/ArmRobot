@@ -8,12 +8,20 @@ class ArmMotor:
     MIN_ANGLE = 0
     HOME_ANGLE = 90
 
-    def __init__(self):
+    instance = None
+
+    @staticmethod
+    def get_instance():
+        if ArmMotor.instance is None:
+            ArmMotor.instance = ArmMotor()
+        return ArmMotor.instance
+
+    def __init__(self, s_step=1):
 
         self.Arm = Arm_Device()
 
         self.s_time = 500
-        self.s_step = 1
+        self.s_step = s_step
 
         self.map_index_angle = {
             1: ArmMotor.HOME_ANGLE,
@@ -30,6 +38,16 @@ class ArmMotor:
             self.map_index_angle[index] += self.s_step
         else:
             self.map_index_angle[index] -= self.s_step
+
+        self.position_servo(index)
+
+    def move_to_position(self, index, angle):
+
+        self.map_index_angle[index] = angle
+
+        self.position_servo(index)
+
+    def position_servo(self, index):
 
         if self.map_index_angle[index] > ArmMotor.MAX_ANGLE:
             self.map_index_angle[index] = ArmMotor.MAX_ANGLE

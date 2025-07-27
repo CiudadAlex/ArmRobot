@@ -9,7 +9,7 @@ class ControlPadManager:
     def __init__(self):
 
         self.controller = widgets.Controller(index=0)
-        self.arm_motor = ArmMotor()
+        self.arm_motor = ArmMotor.get_instance()
 
     def start_control(self):
 
