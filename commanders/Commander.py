@@ -26,11 +26,11 @@ class Commander:
     def move(self, args):
 
         index = int(args[0])
-        angle = int(args[1])
 
         if index == 0:
             self.arm_motor.home()
         else:
+            angle = int(args[1])
             self.arm_motor.move_to_position(index, angle)
 
     @staticmethod
