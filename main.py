@@ -10,5 +10,6 @@ arm_motor = ArmMotor()
 
 for i in range(100):
     arm_motor.move(2, True)
+    arm_motor.move(6, True)
     time.sleep(.2)
 
