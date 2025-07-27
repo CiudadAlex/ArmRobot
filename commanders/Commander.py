@@ -31,17 +31,17 @@ class Commander:
         os._exit(0)
 
     @staticmethod
-    def execute(command, debug=False):
+    def execute(command_with_args, debug=False):
+
+        list_tokens = command_with_args.split()
+        command = list_tokens[0]
+        args = list_tokens[1:]
 
         if command not in Commander.get_instance().command_map.keys():
             Commander.help_commands()
             return False
         else:
             func = Commander.get_instance().command_map[command]
-
-            list_tokens = command.split()
-            args = list_tokens[1:]
-
             func(args)
 
             if debug:
