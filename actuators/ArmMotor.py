@@ -104,4 +104,16 @@ class ArmMotor:
 
         self.position_servos()
 
+    def move_all_to_position(self, angle1, angle2, angle3, angle4, angle5, angle6):
+
+        self.map_index_angle = {
+            1: angle1,
+            2: angle2,
+            3: angle3,
+            4: angle4,
+            5: angle5,
+            6: angle6,
+        }
+
+        self.position_servos()
 
