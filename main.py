@@ -8,7 +8,7 @@ import time
 
 arm_motor = ArmMotor()
 
-for i in range(20):
+for i in range(100):
     arm_motor.move(2, True)
     time.sleep(.2)
 
