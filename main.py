@@ -1,5 +1,6 @@
 from actuators.ArmMotor import ArmMotor
 # from managers.ControlPadManager import ControlPadManager
+import time
 
 
 # control_pad_manager = ControlPadManager()
@@ -8,7 +9,16 @@ from actuators.ArmMotor import ArmMotor
 arm_motor = ArmMotor()
 
 arm_motor.move(2, True)
+time.sleep(1)
+
 arm_motor.move(2, True)
+time.sleep(1)
+
 arm_motor.move(2, True)
+time.sleep(1)
+
 arm_motor.move(2, True)
+time.sleep(1)
+
 arm_motor.move(2, True)
+time.sleep(1)
