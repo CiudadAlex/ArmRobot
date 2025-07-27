@@ -8,17 +8,7 @@ import time
 
 arm_motor = ArmMotor()
 
-arm_motor.move(2, True)
-time.sleep(1)
+for i in range(20):
+    arm_motor.move(2, True)
+    time.sleep(.2)
 
-arm_motor.move(2, True)
-time.sleep(1)
-
-arm_motor.move(2, True)
-time.sleep(1)
-
-arm_motor.move(2, True)
-time.sleep(1)
-
-arm_motor.move(2, True)
-time.sleep(1)
