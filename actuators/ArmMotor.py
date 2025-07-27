@@ -75,7 +75,19 @@ class ArmMotor:
             6: ArmMotor.HOME_ANGLE,
         }
 
-        self.Arm.Arm_serial_servo_write6(ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, 1000)
+        self.position_servos()
+
+    def position_servos(self):
+
+        self.Arm.Arm_serial_servo_write6(
+            self.map_index_angle[1],
+            self.map_index_angle[2],
+            self.map_index_angle[3],
+            self.map_index_angle[4],
+            self.map_index_angle[5],
+            self.map_index_angle[6],
+            1000)
+
         self.print_positions()
         time.sleep(1)
 
@@ -90,8 +102,6 @@ class ArmMotor:
             6: 180,
         }
 
-        self.Arm.Arm_serial_servo_write6(ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, 1000)
-        self.print_positions()
-        time.sleep(1)
+        self.position_servos()
 
 
