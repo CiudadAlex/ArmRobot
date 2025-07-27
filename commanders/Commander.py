@@ -24,7 +24,14 @@ class Commander:
         }
 
     def move(self, args):
-        self.arm_motor.move_to_position(int(args[0]), int(args[1]))
+
+        index = int(args[0])
+        angle = int(args[1])
+
+        if index == 0:
+            self.arm_motor.home()
+        else:
+            self.arm_motor.move_to_position(index, angle)
 
     @staticmethod
     def exit(args):

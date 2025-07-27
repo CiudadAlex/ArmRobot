@@ -32,6 +32,12 @@ class ArmMotor:
             6: ArmMotor.HOME_ANGLE,
         }
 
+    def print_positions(self):
+        print("#############################")
+        for key in range(1, 7):
+            print(f"{key}: {self.map_index_angle[key]}")
+        print("#############################")
+
     def move(self, index, more_or_less):
 
         if more_or_less:
@@ -55,6 +61,7 @@ class ArmMotor:
             self.map_index_angle[index] = ArmMotor.MIN_ANGLE
 
         self.Arm.Arm_serial_servo_write(index, self.map_index_angle[index], self.s_time)
+        self.print_positions()
         time.sleep(0.01)
 
     def home(self):
@@ -69,6 +76,7 @@ class ArmMotor:
         }
 
         self.Arm.Arm_serial_servo_write6(ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, 1000)
+        self.print_positions()
         time.sleep(1)
 
 
