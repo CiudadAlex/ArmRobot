@@ -29,6 +29,8 @@ class Commander:
 
         if index == 0:
             self.arm_motor.home()
+        elif index == 7:
+            self.arm_motor.storage_position()
         else:
             angle = int(args[1])
             self.arm_motor.move_to_position(index, angle)

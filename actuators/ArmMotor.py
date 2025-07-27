@@ -79,4 +79,19 @@ class ArmMotor:
         self.print_positions()
         time.sleep(1)
 
+    def storage_position(self):
+
+        self.map_index_angle = {
+            1: 90,
+            2: 180,
+            3: 0,
+            4: 0,
+            5: 90,
+            6: 180,
+        }
+
+        self.Arm.Arm_serial_servo_write6(ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, ArmMotor.HOME_ANGLE, 1000)
+        self.print_positions()
+        time.sleep(1)
+
 
