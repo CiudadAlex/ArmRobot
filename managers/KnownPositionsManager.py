@@ -4,11 +4,16 @@ import time
 
 class KnownPositionsManager:
 
+    OPEN_CLAW = 90
+    CLOSE_CLAW = 100
+
     HOME = [90, 90, 90, 90, 90, 90]
     STORAGE = [90, 180, 0, 0, 90, 180]
 
-    PICK_UP_CENTER_OPEN_CLAW = [90, 38, 76, 0, 90, 90]
-    PICK_UP_CENTER_CLOSE_CLAW = [90, 38, 76, 0, 90, 100]
+    PICK_UP_CENTER_OPEN_CLAW = [90, 38, 76, 0, 90, OPEN_CLAW]
+    PICK_UP_CENTER_CLOSE_CLAW = [90, 38, 76, 0, 90, CLOSE_CLAW]
+
+    MIDDLE_CLOSE_CLAW = [90, 75, 76, 0, 90, CLOSE_CLAW]
 
     instance = None
 
@@ -39,6 +44,12 @@ class KnownPositionsManager:
         self.move(KnownPositionsManager.STORAGE)
 
     def pick_center(self):
-        self.move_sequence([KnownPositionsManager.PICK_UP_CENTER_OPEN_CLAW, KnownPositionsManager.PICK_UP_CENTER_CLOSE_CLAW])
+        self.move(KnownPositionsManager.PICK_UP_CENTER_OPEN_CLAW)
+
+    def seq_pick_center(self):
+        self.move_sequence([
+            KnownPositionsManager.PICK_UP_CENTER_OPEN_CLAW,
+            KnownPositionsManager.PICK_UP_CENTER_CLOSE_CLAW,
+            KnownPositionsManager.MIDDLE_CLOSE_CLAW])
 
 
