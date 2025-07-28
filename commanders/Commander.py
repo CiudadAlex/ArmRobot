@@ -1,10 +1,12 @@
 import os
 from actuators.ArmMotor import ArmMotor
+from managers.KnownPositionsManager import KnownPositionsManager
 
 
 class Commander:
 
     COMMAND_MOVE = "move"
+    COMMAND_KNOWN = "known"
     COMMAND_EXIT = "exit"
 
     instance = None
@@ -17,9 +19,11 @@ class Commander:
 
     def __init__(self):
         self.arm_motor = ArmMotor.get_instance()
+        self.known_positions_manager = KnownPositionsManager.get_instance()
 
         self.command_map = {
             Commander.COMMAND_MOVE: self.move,
+            Commander.COMMAND_KNOWN: self.known,
             Commander.COMMAND_EXIT: self.exit,
         }
 
@@ -34,6 +38,19 @@ class Commander:
         else:
             angle = int(args[1])
             self.arm_motor.move_to_position(index, angle)
+
+    def known(self, args):
+
+        subcommand = args[0]
+
+        if subcommand == "home":
+            self.known_positions_manager.home()
+        elif subcommand == "storage":
+            self.known_positions_manager.storage()
+        elif subcommand == "pick_center":
+            self.known_positions_manager.pick_center()
+        else:
+            print(f"Unknown subcommand: {subcommand}")
 
     @staticmethod
     def exit(args):
