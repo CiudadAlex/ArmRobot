@@ -11,11 +11,4 @@ if __name__ == '__main__':
     keyboard_commander = KeyboardCommander()
     keyboard_commander.start()
 
-'''
-1: 90
-2: 60
-3: 50
-4: 0
-5: 90
-6: 0
-'''
+
