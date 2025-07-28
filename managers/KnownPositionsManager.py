@@ -7,8 +7,8 @@ class KnownPositionsManager:
     HOME = [90, 90, 90, 90, 90, 90]
     STORAGE = [90, 180, 0, 0, 90, 180]
 
-    PICK_UP_CENTER_OPEN_CLAW = [90, 60, 50, 0, 90, 0]
-    PICK_UP_CENTER_CLOSE_CLAW = [90, 60, 50, 0, 90, 180]
+    PICK_UP_CENTER_OPEN_CLAW = [90, 50, 60, 0, 90, 90]
+    PICK_UP_CENTER_CLOSE_CLAW = [90, 50, 60, 0, 90, 100]
 
     instance = None
 
