@@ -27,6 +27,12 @@ class Commander:
             Commander.COMMAND_EXIT: self.exit,
         }
 
+        self.help_map = {
+            Commander.COMMAND_MOVE: "(index) (angle)",
+            Commander.COMMAND_KNOWN: "(home, storage, pick_center)",
+            Commander.COMMAND_EXIT: "",
+        }
+
     def move(self, args):
 
         index = int(args[0])
@@ -78,6 +84,7 @@ class Commander:
     def help_commands():
         print("Command list:")
 
-        for command in Commander.get_instance().command_map.keys():
-            print(command)
+        help_map = Commander.get_instance().help_map
+        for command in help_map.keys():
+            print(f"{command} {help_map[command]}")
 
