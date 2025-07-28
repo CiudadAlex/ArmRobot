@@ -28,7 +28,7 @@ class Commander:
         }
 
         self.help_map = {
-            Commander.COMMAND_MOVE: "(index) (angle)",
+            Commander.COMMAND_MOVE: "($index) ($angle, +, -)",
             Commander.COMMAND_KNOWN: "(home, storage, pick_center)",
             Commander.COMMAND_EXIT: "",
         }
@@ -42,7 +42,17 @@ class Commander:
         elif index == 7:
             self.arm_motor.storage_position()
         else:
-            angle = int(args[1])
+            str_angle = args[1]
+            self.move_real_index(index, str_angle)
+
+    def move_real_index(self, index, str_angle):
+
+        if str_angle == "+":
+            self.arm_motor.move(index, more_or_less=True)
+        elif str_angle == "-":
+            self.arm_motor.move(index, more_or_less=False)
+        else:
+            angle = int(str_angle)
             self.arm_motor.move_to_position(index, angle)
 
     def known(self, args):
