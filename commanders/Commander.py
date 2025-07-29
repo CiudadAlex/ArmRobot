@@ -86,7 +86,14 @@ class Commander:
             return False
         else:
             func = Commander.get_instance().command_map[command]
-            func(args)
+
+            try:
+                func(args)
+
+            except Exception as e:
+                print(f"Error executing command: {e}")
+                Commander.help_commands()
+                return False
 
             if debug:
                 print("Executed")
