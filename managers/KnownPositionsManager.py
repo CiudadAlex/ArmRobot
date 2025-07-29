@@ -5,12 +5,12 @@ import time
 class KnownPositionsManager:
 
     OPEN_CLAW = 90
-    CLOSE_CLAW = 100
+    CLOSE_CLAW = 135
 
     HOME = [90, 90, 90, 90, 90, 90]
     STORAGE = [90, 180, 0, 0, 90, 180]
 
-    PICK_UP_CENTER_OPEN_CLAW = [90, 38, 76, 0, 90, OPEN_CLAW]
+    PICK_UP_CENTER_OPEN_CLAW = [90, 30, 86, 0, 90, OPEN_CLAW]
     PICK_UP_CENTER_CLOSE_CLAW = [90, 38, 76, 0, 90, CLOSE_CLAW]
 
     MIDDLE_CLOSE_CLAW = [90, 75, 76, 0, 90, CLOSE_CLAW]
