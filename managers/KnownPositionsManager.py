@@ -34,9 +34,14 @@ class KnownPositionsManager:
 
     def move_sequence(self, sequence):
 
-        for list_angles in sequence:
-            self.move(list_angles)
-            time.sleep(3)
+        for list_angles_or_secs in sequence:
+
+            if isinstance(list_angles_or_secs, (int, float)):
+                secs_wait = list_angles_or_secs
+                time.sleep(secs_wait)
+            else:
+                list_angles = list_angles_or_secs
+                self.move(list_angles)
 
     ##########################################
 
@@ -52,7 +57,21 @@ class KnownPositionsManager:
     def seq_pick_center(self):
         self.move_sequence([
             KnownPositionsManager.PICK_UP_CENTER_OPEN_CLAW,
+            2,
             KnownPositionsManager.PICK_UP_CENTER_CLOSE_CLAW,
+            2,
             KnownPositionsManager.MIDDLE_CLOSE_CLAW])
+
+    def seq_pick_center_red(self):
+        self.move_sequence([
+            KnownPositionsManager.PICK_UP_CENTER_OPEN_CLAW,
+            2,
+            KnownPositionsManager.PICK_UP_CENTER_CLOSE_CLAW,
+            2,
+            KnownPositionsManager.MIDDLE_CLOSE_CLAW,
+            2,
+            KnownPositionsManager.PICK_UP_RED_CLOSE_CLAW,
+            2,
+            KnownPositionsManager.PICK_UP_RED_OPEN_CLAW])
 
 
