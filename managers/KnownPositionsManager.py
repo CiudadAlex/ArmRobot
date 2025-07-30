@@ -10,16 +10,40 @@ class KnownPositionsManager:
     HOME = [90, 90, 90, 90, 90, 90]
     STORAGE = [90, 180, 0, 0, 90, 180]
 
-    PICK_UP_CENTER_OPEN_CLAW = [90, 26, 86, 0, 90, OPEN_CLAW]
-    PICK_UP_CENTER_CLOSE_CLAW = [90, 26, 86, 0, 90, CLOSE_CLAW]
+    CENTER = "center"
+    RED = "red"
+    YELLOW = "yellow"
+    GREEN = "green"
+    BLUE = "blue"
 
-    PICK_UP_RED_OPEN_CLAW = [115, 20, 76, 40, 90, OPEN_CLAW]
-    PICK_UP_RED_CLOSE_CLAW = [115, 20, 76, 40, 90, CLOSE_CLAW]
-
-    PICK_UP_YELLOW_OPEN_CLAW = [65, 20, 76, 40, 90, OPEN_CLAW]
-    PICK_UP_YELLOW_CLOSE_CLAW = [65, 20, 76, 40, 90, CLOSE_CLAW]
+    MAP_COLOR_POSITIONS_1_5 = {
+        CENTER:  [90, 26, 86,  0, 90],
+        RED:    [115, 20, 76, 40, 90],
+        YELLOW:  [65, 20, 76, 40, 90],
+        GREEN:  [145, 20, 76, 40, 90],
+        BLUE:    [35, 20, 76, 40, 90],
+    }
 
     MIDDLE_CLOSE_CLAW = [90, 75, 76, 0, 90, CLOSE_CLAW]
+
+    @staticmethod
+    def get_positions(color, open_claw):
+
+        if open_claw:
+            list_to_add = [KnownPositionsManager.OPEN_CLAW]
+        else:
+            list_to_add = [KnownPositionsManager.CLOSE_CLAW]
+
+        return KnownPositionsManager.MAP_COLOR_POSITIONS_1_5[color] + list_to_add
+
+    PICK_UP_CENTER_OPEN_CLAW = get_positions(CENTER, True)
+    PICK_UP_CENTER_CLOSE_CLAW = get_positions(CENTER, False)
+
+    PICK_UP_RED_OPEN_CLAW = get_positions(RED, True)
+    PICK_UP_RED_CLOSE_CLAW = get_positions(RED, False)
+
+    PICK_UP_YELLOW_OPEN_CLAW = get_positions(YELLOW, True)
+    PICK_UP_YELLOW_CLOSE_CLAW = get_positions(YELLOW, False)
 
     SEQ_PICK_CENTER = [PICK_UP_CENTER_OPEN_CLAW, 2,
                        PICK_UP_CENTER_CLOSE_CLAW, 2,
@@ -30,12 +54,12 @@ class KnownPositionsManager:
                        MIDDLE_CLOSE_CLAW, 2]
 
     SEQ_PICK_RED = [PICK_UP_RED_OPEN_CLAW, 2,
-                       PICK_UP_RED_CLOSE_CLAW, 2,
-                       MIDDLE_CLOSE_CLAW, 2]
+                    PICK_UP_RED_CLOSE_CLAW, 2,
+                    MIDDLE_CLOSE_CLAW, 2]
 
     SEQ_DROP_RED = [PICK_UP_RED_CLOSE_CLAW, 2,
-                       PICK_UP_RED_OPEN_CLAW, 2,
-                       MIDDLE_CLOSE_CLAW, 2]
+                    PICK_UP_RED_OPEN_CLAW, 2,
+                    MIDDLE_CLOSE_CLAW, 2]
 
     SEQ_PICK_YELLOW = [PICK_UP_YELLOW_OPEN_CLAW, 2,
                        PICK_UP_YELLOW_CLOSE_CLAW, 2,
