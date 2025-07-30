@@ -16,7 +16,34 @@ class KnownPositionsManager:
     PICK_UP_RED_OPEN_CLAW = [115, 20, 76, 40, 90, OPEN_CLAW]
     PICK_UP_RED_CLOSE_CLAW = [115, 20, 76, 40, 90, CLOSE_CLAW]
 
+    PICK_UP_YELLOW_OPEN_CLAW = [65, 20, 76, 40, 90, OPEN_CLAW]
+    PICK_UP_YELLOW_CLOSE_CLAW = [65, 20, 76, 40, 90, CLOSE_CLAW]
+
     MIDDLE_CLOSE_CLAW = [90, 75, 76, 0, 90, CLOSE_CLAW]
+
+    SEQ_PICK_CENTER = [PICK_UP_CENTER_OPEN_CLAW, 2,
+                       PICK_UP_CENTER_CLOSE_CLAW, 2,
+                       MIDDLE_CLOSE_CLAW, 2]
+
+    SEQ_DROP_CENTER = [PICK_UP_CENTER_CLOSE_CLAW, 2,
+                       PICK_UP_CENTER_OPEN_CLAW, 2,
+                       MIDDLE_CLOSE_CLAW, 2]
+
+    SEQ_PICK_RED = [PICK_UP_RED_OPEN_CLAW, 2,
+                       PICK_UP_RED_CLOSE_CLAW, 2,
+                       MIDDLE_CLOSE_CLAW, 2]
+
+    SEQ_DROP_RED = [PICK_UP_RED_CLOSE_CLAW, 2,
+                       PICK_UP_RED_OPEN_CLAW, 2,
+                       MIDDLE_CLOSE_CLAW, 2]
+
+    SEQ_PICK_YELLOW = [PICK_UP_YELLOW_OPEN_CLAW, 2,
+                       PICK_UP_YELLOW_CLOSE_CLAW, 2,
+                       MIDDLE_CLOSE_CLAW, 2]
+
+    SEQ_DROP_YELLOW = [PICK_UP_YELLOW_CLOSE_CLAW, 2,
+                       PICK_UP_YELLOW_OPEN_CLAW, 2,
+                       MIDDLE_CLOSE_CLAW, 2]
 
     instance = None
 
@@ -55,23 +82,23 @@ class KnownPositionsManager:
         self.move(KnownPositionsManager.PICK_UP_CENTER_OPEN_CLAW)
 
     def seq_pick_center(self):
-        self.move_sequence([
-            KnownPositionsManager.PICK_UP_CENTER_OPEN_CLAW,
-            2,
-            KnownPositionsManager.PICK_UP_CENTER_CLOSE_CLAW,
-            2,
-            KnownPositionsManager.MIDDLE_CLOSE_CLAW])
+        self.move_sequence(KnownPositionsManager.SEQ_PICK_CENTER)
 
     def seq_pick_center_red(self):
-        self.move_sequence([
-            KnownPositionsManager.PICK_UP_CENTER_OPEN_CLAW,
-            2,
-            KnownPositionsManager.PICK_UP_CENTER_CLOSE_CLAW,
-            2,
-            KnownPositionsManager.MIDDLE_CLOSE_CLAW,
-            2,
-            KnownPositionsManager.PICK_UP_RED_CLOSE_CLAW,
-            2,
-            KnownPositionsManager.PICK_UP_RED_OPEN_CLAW])
+        self.move_sequence(KnownPositionsManager.SEQ_PICK_CENTER + KnownPositionsManager.SEQ_DROP_RED)
 
+    def seq_pick_center_yellow(self):
+        self.move_sequence(KnownPositionsManager.SEQ_PICK_CENTER + KnownPositionsManager.SEQ_DROP_YELLOW)
+
+    def seq_pick_red_center(self):
+        self.move_sequence(KnownPositionsManager.SEQ_PICK_RED + KnownPositionsManager.SEQ_DROP_CENTER)
+
+    def seq_pick_red_yellow(self):
+        self.move_sequence(KnownPositionsManager.SEQ_PICK_RED + KnownPositionsManager.SEQ_DROP_YELLOW)
+
+    def seq_pick_yellow_center(self):
+        self.move_sequence(KnownPositionsManager.SEQ_PICK_YELLOW + KnownPositionsManager.SEQ_DROP_CENTER)
+
+    def seq_pick_yellow_red(self):
+        self.move_sequence(KnownPositionsManager.SEQ_PICK_YELLOW + KnownPositionsManager.SEQ_DROP_RED)
 

@@ -29,7 +29,7 @@ class Commander:
 
         self.help_map = {
             Commander.COMMAND_MOVE: "($index) ($angle, +, -)",
-            Commander.COMMAND_KNOWN: "(home, storage, pick_center, seq_pick_center, seq_pick_center_red)",
+            Commander.COMMAND_KNOWN: "(home, storage, pick_center, seq_pick_center, seq_pick_$color1_$color2)",
             Commander.COMMAND_EXIT: "",
         }
 
@@ -69,6 +69,16 @@ class Commander:
             self.known_positions_manager.seq_pick_center()
         elif subcommand == "seq_pick_center_red":
             self.known_positions_manager.seq_pick_center_red()
+        elif subcommand == "seq_pick_center_yellow":
+            self.known_positions_manager.seq_pick_center_yellow()
+        elif subcommand == "seq_pick_red_center":
+            self.known_positions_manager.seq_pick_red_center()
+        elif subcommand == "seq_pick_red_yellow":
+            self.known_positions_manager.seq_pick_red_yellow()
+        elif subcommand == "seq_pick_yellow_center":
+            self.known_positions_manager.seq_pick_yellow_center()
+        elif subcommand == "seq_pick_yellow_red":
+            self.known_positions_manager.seq_pick_yellow_red()
         else:
             print(f"Unknown subcommand: {subcommand}")
 
