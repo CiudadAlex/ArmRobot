@@ -67,20 +67,11 @@ class Commander:
             self.known_positions_manager.pick_center()
         elif subcommand == "seq_pick_center":
             self.known_positions_manager.seq_pick_center()
-        elif subcommand == "seq_pick_center_red":
-            self.known_positions_manager.seq_pick_center_red()
-        elif subcommand == "seq_pick_center_yellow":
-            self.known_positions_manager.seq_pick_center_yellow()
-        elif subcommand == "seq_pick_red_center":
-            self.known_positions_manager.seq_pick_red_center()
-        elif subcommand == "seq_pick_red_yellow":
-            self.known_positions_manager.seq_pick_red_yellow()
-        elif subcommand == "seq_pick_yellow_center":
-            self.known_positions_manager.seq_pick_yellow_center()
-        elif subcommand == "seq_pick_yellow_red":
-            self.known_positions_manager.seq_pick_yellow_red()
         else:
-            print(f"Unknown subcommand: {subcommand}")
+            list_tokens = subcommand.split("_")
+            color_pick = list_tokens[2]
+            color_drop = list_tokens[3]
+            self.known_positions_manager.seq_pick_color1_color2(color_pick, color_drop)
 
     @staticmethod
     def exit(args):

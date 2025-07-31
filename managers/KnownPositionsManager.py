@@ -61,13 +61,6 @@ class KnownPositionsManager:
     PICK_UP_CENTER_OPEN_CLAW = get_positions(CENTER, True)
 
     SEQ_PICK_CENTER = get_sequence(CENTER, pick_or_drop=True)
-    SEQ_DROP_CENTER = get_sequence(CENTER, pick_or_drop=False)
-
-    SEQ_PICK_RED = get_sequence(RED, pick_or_drop=True)
-    SEQ_DROP_RED = get_sequence(RED, pick_or_drop=False)
-
-    SEQ_PICK_YELLOW = get_sequence(YELLOW, pick_or_drop=True)
-    SEQ_DROP_YELLOW = get_sequence(YELLOW, pick_or_drop=False)
 
     instance = None
 
@@ -108,21 +101,9 @@ class KnownPositionsManager:
     def seq_pick_center(self):
         self.move_sequence(KnownPositionsManager.SEQ_PICK_CENTER)
 
-    def seq_pick_center_red(self):
-        self.move_sequence(KnownPositionsManager.SEQ_PICK_CENTER + KnownPositionsManager.SEQ_DROP_RED)
+    def seq_pick_color1_color2(self, color_pick, color_drop):
+        seq_pick = self.get_sequence(color_pick, pick_or_drop=True)
+        seq_drop = self.get_sequence(color_drop, pick_or_drop=False)
+        self.move_sequence(seq_pick + seq_drop)
 
-    def seq_pick_center_yellow(self):
-        self.move_sequence(KnownPositionsManager.SEQ_PICK_CENTER + KnownPositionsManager.SEQ_DROP_YELLOW)
-
-    def seq_pick_red_center(self):
-        self.move_sequence(KnownPositionsManager.SEQ_PICK_RED + KnownPositionsManager.SEQ_DROP_CENTER)
-
-    def seq_pick_red_yellow(self):
-        self.move_sequence(KnownPositionsManager.SEQ_PICK_RED + KnownPositionsManager.SEQ_DROP_YELLOW)
-
-    def seq_pick_yellow_center(self):
-        self.move_sequence(KnownPositionsManager.SEQ_PICK_YELLOW + KnownPositionsManager.SEQ_DROP_CENTER)
-
-    def seq_pick_yellow_red(self):
-        self.move_sequence(KnownPositionsManager.SEQ_PICK_YELLOW + KnownPositionsManager.SEQ_DROP_RED)
 
