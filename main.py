@@ -16,3 +16,10 @@ if __name__ == '__main__':
     keyboard_commander.start()
 
 
+# FIXME test combinations pick-drop
+# FIXME test camera capture image
+# FIXME test ControlPadManager
+
+
+# FIXME recognize color of cube in the center
+
