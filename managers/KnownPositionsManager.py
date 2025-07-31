@@ -7,6 +7,8 @@ class KnownPositionsManager:
     OPEN_CLAW = 90
     CLOSE_CLAW = 135
 
+    POSITION_2_AVOID_TOUCH = 50
+
     HOME = [90, 90, 90, 90, 90, 90]
     STORAGE = [90, 180, 0, 0, 90, 180]
 
@@ -36,38 +38,29 @@ class KnownPositionsManager:
 
         return KnownPositionsManager.MAP_COLOR_POSITIONS_1_5[color] + list_to_add
 
+    # POSITION_2_AVOID_TOUCH
+
+    def get_sequence(self, color, pick_or_drop):
+
+        first_open = pick_or_drop
+
+        pick_up_color_open_claw = self.get_positions(color, open_claw=first_open)
+        pick_up_color_close_claw = self.get_positions(color, open_claw=not first_open)
+
+        return [pick_up_color_open_claw, 2,
+                pick_up_color_close_claw, 2,
+                KnownPositionsManager.MIDDLE_CLOSE_CLAW, 2]
+
     PICK_UP_CENTER_OPEN_CLAW = get_positions(CENTER, True)
-    PICK_UP_CENTER_CLOSE_CLAW = get_positions(CENTER, False)
 
-    PICK_UP_RED_OPEN_CLAW = get_positions(RED, True)
-    PICK_UP_RED_CLOSE_CLAW = get_positions(RED, False)
+    SEQ_PICK_CENTER = get_sequence(CENTER, pick_or_drop=True)
+    SEQ_DROP_CENTER = get_sequence(CENTER, pick_or_drop=False)
 
-    PICK_UP_YELLOW_OPEN_CLAW = get_positions(YELLOW, True)
-    PICK_UP_YELLOW_CLOSE_CLAW = get_positions(YELLOW, False)
+    SEQ_PICK_RED = get_sequence(RED, pick_or_drop=True)
+    SEQ_DROP_RED = get_sequence(RED, pick_or_drop=False)
 
-    SEQ_PICK_CENTER = [PICK_UP_CENTER_OPEN_CLAW, 2,
-                       PICK_UP_CENTER_CLOSE_CLAW, 2,
-                       MIDDLE_CLOSE_CLAW, 2]
-
-    SEQ_DROP_CENTER = [PICK_UP_CENTER_CLOSE_CLAW, 2,
-                       PICK_UP_CENTER_OPEN_CLAW, 2,
-                       MIDDLE_CLOSE_CLAW, 2]
-
-    SEQ_PICK_RED = [PICK_UP_RED_OPEN_CLAW, 2,
-                    PICK_UP_RED_CLOSE_CLAW, 2,
-                    MIDDLE_CLOSE_CLAW, 2]
-
-    SEQ_DROP_RED = [PICK_UP_RED_CLOSE_CLAW, 2,
-                    PICK_UP_RED_OPEN_CLAW, 2,
-                    MIDDLE_CLOSE_CLAW, 2]
-
-    SEQ_PICK_YELLOW = [PICK_UP_YELLOW_OPEN_CLAW, 2,
-                       PICK_UP_YELLOW_CLOSE_CLAW, 2,
-                       MIDDLE_CLOSE_CLAW, 2]
-
-    SEQ_DROP_YELLOW = [PICK_UP_YELLOW_CLOSE_CLAW, 2,
-                       PICK_UP_YELLOW_OPEN_CLAW, 2,
-                       MIDDLE_CLOSE_CLAW, 2]
+    SEQ_PICK_YELLOW = get_sequence(YELLOW, pick_or_drop=True)
+    SEQ_DROP_YELLOW = get_sequence(YELLOW, pick_or_drop=False)
 
     instance = None
 
