@@ -6,6 +6,7 @@ from managers.KnownPositionsManager import KnownPositionsManager
 class Commander:
 
     COMMAND_MOVE = "move"
+    COMMAND_MOVE_6 = "move6"
     COMMAND_KNOWN = "known"
     COMMAND_EXIT = "exit"
 
@@ -23,12 +24,14 @@ class Commander:
 
         self.command_map = {
             Commander.COMMAND_MOVE: self.move,
+            Commander.COMMAND_MOVE_6: self.move_6,
             Commander.COMMAND_KNOWN: self.known,
             Commander.COMMAND_EXIT: self.exit,
         }
 
         self.help_map = {
             Commander.COMMAND_MOVE: "($index) ($angle, +, -)",
+            Commander.COMMAND_MOVE_6: "($angle1) ($angle2) ($angle3) ($angle4) ($angle5) ($angle6)",
             Commander.COMMAND_KNOWN: "(home, storage, pick_center, seq_pick_center, seq_pick_$color1_$color2)",
             Commander.COMMAND_EXIT: "",
         }
@@ -44,6 +47,9 @@ class Commander:
         else:
             str_angle = args[1]
             self.move_real_index(index, str_angle)
+
+    def move_6(self, args):
+        self.arm_motor.move_all_to_position(*args)
 
     def move_real_index(self, index, str_angle):
 
