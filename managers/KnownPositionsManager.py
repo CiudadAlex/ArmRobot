@@ -1,4 +1,4 @@
-#from actuators.ArmMotor import ArmMotor
+from actuators.ArmMotor import ArmMotor
 import time
 
 
@@ -67,7 +67,7 @@ class KnownPositionsManager:
         return KnownPositionsManager.instance
 
     def __init__(self):
-        self.arm_motor = None #ArmMotor.get_instance()
+        self.arm_motor = ArmMotor.get_instance()
 
     def move(self, list_angles):
         self.arm_motor.move_all_to_position(*list_angles)
