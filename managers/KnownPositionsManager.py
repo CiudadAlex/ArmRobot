@@ -22,8 +22,8 @@ class KnownPositionsManager:
         CENTER:  [90, 26, 86,  0, 90],
         RED:    [115, 20, 76, 40, 90],
         YELLOW:  [65, 20, 76, 40, 90],
-        GREEN:  [135, 40, 60, 40, 90],
-        BLUE:    [45, 40, 60, 40, 90],
+        GREEN:  [135, 40, 50, 40, 90],
+        BLUE:    [45, 40, 50, 40, 90],
     }
 
     MIDDLE_CLOSE_CLAW = [90, 75, 76, 0, 90, CLOSE_CLAW]

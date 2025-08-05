@@ -2,6 +2,7 @@ import os
 import traceback
 from actuators.ArmMotor import ArmMotor
 from managers.KnownPositionsManager import KnownPositionsManager
+from sensors.ImageCapturer import ImageCapturer
 
 
 class Commander:
@@ -9,6 +10,7 @@ class Commander:
     COMMAND_MOVE = "move"
     COMMAND_MOVE_6 = "move6"
     COMMAND_KNOWN = "known"
+    COMMAND_PHOTO = "photo"
     COMMAND_EXIT = "exit"
 
     instance = None
@@ -27,6 +29,7 @@ class Commander:
             Commander.COMMAND_MOVE: self.move,
             Commander.COMMAND_MOVE_6: self.move_6,
             Commander.COMMAND_KNOWN: self.known,
+            Commander.COMMAND_PHOTO: self.photo,
             Commander.COMMAND_EXIT: self.exit,
         }
 
@@ -34,6 +37,7 @@ class Commander:
             Commander.COMMAND_MOVE: "($index) ($angle, +, -)",
             Commander.COMMAND_MOVE_6: "($angle1) ($angle2) ($angle3) ($angle4) ($angle5) ($angle6)",
             Commander.COMMAND_KNOWN: "(home, storage, pick_center, seq_pick_center, seq_pick_$color1_$color2)",
+            Commander.COMMAND_PHOTO: "",
             Commander.COMMAND_EXIT: "",
         }
 
@@ -79,6 +83,10 @@ class Commander:
             color_pick = list_tokens[2]
             color_drop = list_tokens[3]
             self.known_positions_manager.seq_pick_color1_color2(color_pick, color_drop)
+
+    @staticmethod
+    def photo(args):
+        ImageCapturer.capture_image()
 
     @staticmethod
     def exit(args):
