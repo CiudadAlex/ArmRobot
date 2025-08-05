@@ -65,17 +65,8 @@ class ArmMotor:
         time.sleep(0.01)
 
     def home(self):
-
-        self.map_index_angle = {
-            1: ArmMotor.HOME_ANGLE,
-            2: ArmMotor.HOME_ANGLE,
-            3: ArmMotor.HOME_ANGLE,
-            4: ArmMotor.HOME_ANGLE,
-            5: ArmMotor.HOME_ANGLE,
-            6: ArmMotor.HOME_ANGLE,
-        }
-
-        self.position_servos()
+        home_ang = ArmMotor.HOME_ANGLE
+        self.move_all_to_position(home_ang, home_ang, home_ang, home_ang, home_ang, home_ang)
 
     def position_servos(self):
 
@@ -92,27 +83,17 @@ class ArmMotor:
         time.sleep(1)
 
     def storage_position(self):
-
-        self.map_index_angle = {
-            1: 90,
-            2: 180,
-            3: 0,
-            4: 0,
-            5: 90,
-            6: 180,
-        }
-
-        self.position_servos()
+        self.move_all_to_position(90, 180, 0, 0, 90, 180)
 
     def move_all_to_position(self, angle1, angle2, angle3, angle4, angle5, angle6):
 
         self.map_index_angle = {
-            1: angle1,
-            2: angle2,
-            3: angle3,
-            4: angle4,
-            5: angle5,
-            6: angle6,
+            1: int(angle1),
+            2: int(angle2),
+            3: int(angle3),
+            4: int(angle4),
+            5: int(angle5),
+            6: int(angle6),
         }
 
         self.position_servos()
