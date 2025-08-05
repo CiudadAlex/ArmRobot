@@ -58,10 +58,6 @@ class KnownPositionsManager:
                 pick_up_color_move_3, wait_secs,
                 self.MIDDLE_CLOSE_CLAW, wait_secs]
 
-    PICK_UP_CENTER_OPEN_CLAW = get_positions(CENTER, True)
-
-    SEQ_PICK_CENTER = get_sequence(CENTER, pick_or_drop=True)
-
     instance = None
 
     @staticmethod
@@ -96,10 +92,12 @@ class KnownPositionsManager:
         self.move(KnownPositionsManager.STORAGE)
 
     def pick_center(self):
-        self.move(KnownPositionsManager.PICK_UP_CENTER_OPEN_CLAW)
+        pick_up_center_open_claw = self.get_positions(KnownPositionsManager.CENTER, True)
+        self.move(pick_up_center_open_claw)
 
     def seq_pick_center(self):
-        self.move_sequence(KnownPositionsManager.SEQ_PICK_CENTER)
+        seq_pick_up_center = self.get_sequence(KnownPositionsManager.CENTER, pick_or_drop=True)
+        self.move_sequence(seq_pick_up_center)
 
     def seq_pick_color1_color2(self, color_pick, color_drop):
         seq_pick = self.get_sequence(color_pick, pick_or_drop=True)
