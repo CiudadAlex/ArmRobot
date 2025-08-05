@@ -28,15 +28,15 @@ class KnownPositionsManager:
 
     MIDDLE_CLOSE_CLAW = [90, 75, 76, 0, 90, CLOSE_CLAW]
 
-    @staticmethod
-    def get_positions(color, open_claw):
+    @classmethod
+    def get_positions(cls, color, open_claw):
 
         if open_claw:
-            list_to_add = [KnownPositionsManager.OPEN_CLAW]
+            list_to_add = [cls.OPEN_CLAW]
         else:
-            list_to_add = [KnownPositionsManager.CLOSE_CLAW]
+            list_to_add = [cls.CLOSE_CLAW]
 
-        return KnownPositionsManager.MAP_COLOR_POSITIONS_1_5[color] + list_to_add
+        return cls.MAP_COLOR_POSITIONS_1_5[color] + list_to_add
 
     def get_sequence(self, color, pick_or_drop):
 
@@ -47,16 +47,16 @@ class KnownPositionsManager:
         pick_up_color_move_2 = self.get_positions(color, open_claw=not first_open)
 
         pick_up_color_move_0 = pick_up_color_move_1.copy()
-        pick_up_color_move_0[1] = KnownPositionsManager.POSITION_2_AVOID_TOUCH
+        pick_up_color_move_0[1] = self.POSITION_2_AVOID_TOUCH
 
         pick_up_color_move_3 = pick_up_color_move_2.copy()
-        pick_up_color_move_3[1] = KnownPositionsManager.POSITION_2_AVOID_TOUCH
+        pick_up_color_move_3[1] = self.POSITION_2_AVOID_TOUCH
 
         return [pick_up_color_move_0, wait_secs,
                 pick_up_color_move_1, wait_secs,
                 pick_up_color_move_2, wait_secs,
                 pick_up_color_move_3, wait_secs,
-                KnownPositionsManager.MIDDLE_CLOSE_CLAW, wait_secs]
+                self.MIDDLE_CLOSE_CLAW, wait_secs]
 
     PICK_UP_CENTER_OPEN_CLAW = get_positions(CENTER, True)
 
