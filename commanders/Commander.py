@@ -1,4 +1,5 @@
 import os
+import traceback
 from actuators.ArmMotor import ArmMotor
 from managers.KnownPositionsManager import KnownPositionsManager
 
@@ -101,6 +102,7 @@ class Commander:
 
             except Exception as e:
                 print(f"Error executing command: {e}")
+                traceback.print_exc()
                 Commander.help_commands()
                 return False
 
