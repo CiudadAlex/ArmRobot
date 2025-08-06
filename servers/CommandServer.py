@@ -23,7 +23,7 @@ def get_ui():
 
 @app.route('/capture.jpg')
 def get_image():
-    return send_file('./capture.jpg', mimetype='image/jpeg')
+    return send_file('../capture.jpg', mimetype='image/jpeg')
 
 
 def run_server():
