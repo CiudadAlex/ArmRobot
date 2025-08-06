@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ArmRobot eyes</title>
+  <style>
+    #video {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Video stream</h1>
+  <img id="video" src="capture.jpg" alt="Stream">
+
+  <script>
+    const img = document.getElementById('video');
+    const refreshRateMs = 1000 / 10; // 10 FPS
+
+    function updateImage() {
+      const timestamp = new Date().getTime(); // Prevent browser cache
+      img.src = `capture.jpg?t=${timestamp}`;
+    }
+
+    // Reloads image at a constant rate
+    setInterval(updateImage, refreshRateMs);
+  </script>
+</body>
+</html>

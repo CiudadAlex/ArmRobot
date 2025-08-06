@@ -2,3 +2,4 @@ python3 -m venv --system-site-packages .venv
 source .venv/bin/activate
 
 sudo ./.venv/bin/pip3 install Arm_lib==1.0.0
+sudo ./.venv/bin/pip3 install flask==3.0.3

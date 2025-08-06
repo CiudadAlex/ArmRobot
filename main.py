@@ -1,11 +1,15 @@
 # from managers.ControlPadManager import ControlPadManager
 from commanders.KeyboardCommander import KeyboardCommander
+from servers import CommandServer
 
 # control_pad_manager = ControlPadManager()
 # control_pad_manager.start_control()
 
 
 if __name__ == '__main__':
+
+    print("######## Start CommandServer")
+    CommandServer.run_server()
 
     print("######## Start KeyboardCommander")
     keyboard_commander = KeyboardCommander()
