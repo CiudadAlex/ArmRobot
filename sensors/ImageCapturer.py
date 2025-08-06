@@ -6,7 +6,7 @@ class ImageCapturer:
     @staticmethod
     def capture_image():
 
-        capture = cv.VideoCapture(1, cv.CAP_V4L2)
+        capture = cv.VideoCapture(1)
         while capture.isOpened():
             try:
                 ret, img = capture.read()
