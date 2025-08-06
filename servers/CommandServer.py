@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, make_response
+from flask import Flask, render_template, send_file
 from commanders.Commander import Commander
 import threading
 
@@ -19,6 +19,11 @@ def set_led(mode):
 @app.route('/ui', methods=['GET'])
 def get_ui():
     return render_template('ui.html')
+
+
+@app.route('/capture.jpg')
+def get_image(name):
+    return send_file('./capture.jpg', name)
 
 
 def run_server():
