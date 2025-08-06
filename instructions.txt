@@ -1,0 +1,10 @@
+Arm Robot setup:
+
+1. Unplug the USB Camera from the Rhaspberry Pi (this allows that the boot process does not
+   find the camera and will not start using it, preventing the program to access it)
+2. Connect to the electric power
+3. Connect to the network LAN cable
+4. Switch on the robot and wait for the beep that indicates the boot process is over
+5. Plug the USB Camera to the Rhaspberry Pi so that it configures to the device
+   /dev/video0
+   and gets ready for the program to use
