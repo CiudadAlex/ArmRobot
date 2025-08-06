@@ -22,7 +22,6 @@ if __name__ == '__main__':
 
 # FIXME test combinations pick-drop
 # FIXME test ControlPadManager
-# FIXME see video in the HTML
 
 
 # FIXME recognize color of cube in the center
