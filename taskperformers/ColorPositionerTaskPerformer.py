@@ -1,6 +1,7 @@
 from managers.KnownPositionsManager import KnownPositionsManager
 from utils.ColorAverager import ColorAverager
 import time
+import threading
 
 
 class ColorPositionerTaskPerformer:
@@ -15,6 +16,23 @@ class ColorPositionerTaskPerformer:
 
     def __init__(self):
         self.known_positions_manager = KnownPositionsManager.get_instance()
+        self.running = False
+        self.thread = None
+
+    def start_infinite_loop_check_and_act(self):
+        self.thread = threading.Thread(target=self.infinite_loop_check_and_act)
+        self.thread.daemon = True
+        self.thread.start()
+
+    def infinite_loop_check_and_act(self):
+
+        self.running = True
+
+        while self.running:
+            self.check_and_act()
+
+    def stop(self):
+        self.running = False
 
     def check_and_act(self):
 

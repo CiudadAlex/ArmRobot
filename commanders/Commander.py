@@ -5,6 +5,7 @@ from managers.KnownPositionsManager import KnownPositionsManager
 from sensors.ImageCapturer import ImageCapturer
 from datetime import datetime
 from utils.ColorAverager import ColorAverager
+from taskperformers.ColorPositionerTaskPerformer import ColorPositionerTaskPerformer
 
 
 class Commander:
@@ -14,6 +15,7 @@ class Commander:
     COMMAND_KNOWN = "known"
     COMMAND_PHOTO = "photo"
     COMMAND_COLOR = "color"
+    COMMAND_POSITION_BY_COLOR = "position_by_color"
     COMMAND_EXIT = "exit"
 
     instance = None
@@ -34,6 +36,7 @@ class Commander:
             Commander.COMMAND_KNOWN: self.known,
             Commander.COMMAND_PHOTO: self.photo,
             Commander.COMMAND_COLOR: self.color,
+            Commander.COMMAND_POSITION_BY_COLOR: self.position_by_color,
             Commander.COMMAND_EXIT: self.exit,
         }
 
@@ -43,6 +46,7 @@ class Commander:
             Commander.COMMAND_KNOWN: "(home, storage, pick_center, seq_pick_center, seq_pick_$color1_$color2)",
             Commander.COMMAND_PHOTO: "",
             Commander.COMMAND_COLOR: "",
+            Commander.COMMAND_POSITION_BY_COLOR: "(on off)",
             Commander.COMMAND_EXIT: "",
         }
 
@@ -102,6 +106,16 @@ class Commander:
         str_color = str(avg_color)
         print(f"COLOR: {str_color}")
         return str_color
+
+    @staticmethod
+    def position_by_color(args):
+
+        subcommand = args[0]
+
+        if subcommand == "on":
+            ColorPositionerTaskPerformer.get_instance().start_infinite_loop_check_and_act()
+        else:
+            ColorPositionerTaskPerformer.get_instance().stop()
 
     @staticmethod
     def exit(args):
