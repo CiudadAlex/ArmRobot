@@ -7,10 +7,6 @@ from sensors.ImageCapturer import ImageCapturer
 # control_pad_manager = ControlPadManager()
 # control_pad_manager.start_control()
 
-from utils.ColorAverager import ColorAverager
-avg_color = ColorAverager.get_average_central_color("./capture.jpg", proportion=0.05)
-print(f"COLOR: {avg_color}")
-
 
 if __name__ == '__main__':
 

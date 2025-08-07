@@ -4,6 +4,7 @@ from actuators.ArmMotor import ArmMotor
 from managers.KnownPositionsManager import KnownPositionsManager
 from sensors.ImageCapturer import ImageCapturer
 from datetime import datetime
+from utils.ColorAverager import ColorAverager
 
 
 class Commander:
@@ -12,6 +13,7 @@ class Commander:
     COMMAND_MOVE_6 = "move6"
     COMMAND_KNOWN = "known"
     COMMAND_PHOTO = "photo"
+    COMMAND_COLOR = "color"
     COMMAND_EXIT = "exit"
 
     instance = None
@@ -31,6 +33,7 @@ class Commander:
             Commander.COMMAND_MOVE_6: self.move_6,
             Commander.COMMAND_KNOWN: self.known,
             Commander.COMMAND_PHOTO: self.photo,
+            Commander.COMMAND_COLOR: self.color,
             Commander.COMMAND_EXIT: self.exit,
         }
 
@@ -39,6 +42,7 @@ class Commander:
             Commander.COMMAND_MOVE_6: "($angle1) ($angle2) ($angle3) ($angle4) ($angle5) ($angle6)",
             Commander.COMMAND_KNOWN: "(home, storage, pick_center, seq_pick_center, seq_pick_$color1_$color2)",
             Commander.COMMAND_PHOTO: "",
+            Commander.COMMAND_COLOR: "",
             Commander.COMMAND_EXIT: "",
         }
 
@@ -89,6 +93,13 @@ class Commander:
     def photo(args):
         str_now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         ImageCapturer.capture_image(image_name='photo_' + str_now + '.jpg')
+
+    @staticmethod
+    def color(args):
+        avg_color = ColorAverager.get_average_central_color("./capture.jpg", proportion=0.05)
+        str_color = str(avg_color)
+        print(f"COLOR: {str_color}")
+        return str_color
 
     @staticmethod
     def exit(args):
