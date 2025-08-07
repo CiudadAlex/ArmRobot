@@ -8,11 +8,11 @@ from sensors.ImageCapturer import ImageCapturer
 # control_pad_manager.start_control()
 
 from utils.ColorAverager import ColorAverager
-# avg_color = ColorAverager.get_average_central_color("./capture.jpg", proportion=0.05)
-# print(f"COLOR: {avg_color}")
+avg_color = ColorAverager.get_average_central_color("./capture.jpg", proportion=0.05)
+print(f"COLOR: {avg_color}")
 
 
-if __name__ == '__main__':
+if __name__ == '__main__2':
 
     print("######## Start capturing video")
     ImageCapturer.get_instance().start_infinite_loop_capture()
