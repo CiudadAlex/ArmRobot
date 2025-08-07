@@ -11,6 +11,7 @@ class KnownPositionsManager:
 
     HOME = [90, 90, 90, 90, 90, 90]
     STORAGE = [90, 180, 0, 0, 90, 180]
+    LOOK = [90, 26, 86,  0, 90, 180]
 
     CENTER = "center"
     RED = "red"
@@ -90,6 +91,9 @@ class KnownPositionsManager:
 
     def storage(self):
         self.move(KnownPositionsManager.STORAGE)
+
+    def look(self):
+        self.move(KnownPositionsManager.LOOK)
 
     def pick_center(self):
         pick_up_center_open_claw = self.get_positions(KnownPositionsManager.CENTER, True)

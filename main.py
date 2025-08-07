@@ -7,16 +7,11 @@ from sensors.ImageCapturer import ImageCapturer
 # control_pad_manager = ControlPadManager()
 # control_pad_manager.start_control()
 
-# Red:    (183,   0,  6)
-# Yellow: (218, 103,  9)
-# Green:  ( 15,  37, 26)
-# Blue:   ( 11,  27, 50)
-
 
 if __name__ == '__main__':
 
     print("######## Start capturing video")
-    # ImageCapturer.get_instance().start_infinite_loop_capture()
+    ImageCapturer.get_instance().start_infinite_loop_capture()
 
     print("######## Start CommandServer")
     CommandServer.run_server()

@@ -79,6 +79,8 @@ class Commander:
             self.known_positions_manager.home()
         elif subcommand == "storage":
             self.known_positions_manager.storage()
+        elif subcommand == "look":
+            self.known_positions_manager.look()
         elif subcommand == "pick_center":
             self.known_positions_manager.pick_center()
         elif subcommand == "seq_pick_center":
