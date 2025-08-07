@@ -3,6 +3,7 @@ import traceback
 from actuators.ArmMotor import ArmMotor
 from managers.KnownPositionsManager import KnownPositionsManager
 from sensors.ImageCapturer import ImageCapturer
+from datetime import datetime
 
 
 class Commander:
@@ -86,7 +87,8 @@ class Commander:
 
     @staticmethod
     def photo(args):
-        ImageCapturer.capture_image()
+        str_now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        ImageCapturer.capture_image(image_name='photo_' + str_now + '.jpg')
 
     @staticmethod
     def exit(args):

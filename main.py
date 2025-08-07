@@ -12,7 +12,7 @@ avg_color = ColorAverager.get_average_central_color("./capture.jpg", proportion=
 print(f"COLOR: {avg_color}")
 
 
-if __name__ == '__main__2':
+if __name__ == '__main__':
 
     print("######## Start capturing video")
     ImageCapturer.get_instance().start_infinite_loop_capture()

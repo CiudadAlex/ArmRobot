@@ -27,7 +27,7 @@ class ImageCapturer:
             time.sleep(0.1)
 
     @staticmethod
-    def capture_image():
+    def capture_image(image_name='capture.jpg'):
 
         capture = cv.VideoCapture(0)
         while capture.isOpened():
@@ -35,7 +35,7 @@ class ImageCapturer:
                 ret, img = capture.read()
                 img = cv.resize(img, (640, 480))
 
-                cv.imwrite('capture.jpg', img)
+                cv.imwrite(image_name, img)
 
                 return cv.imencode('.jpg', img)[1].tobytes()
 
