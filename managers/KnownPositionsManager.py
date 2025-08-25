@@ -95,13 +95,13 @@ class KnownPositionsManager:
     def look(self):
         self.move(KnownPositionsManager.LOOK)
 
-    def pick_center(self):
-        pick_up_center_open_claw = self.get_positions(KnownPositionsManager.CENTER, True)
+    def pick_color(self, color_pick):
+        pick_up_center_open_claw = self.get_positions(color_pick, True)
         self.move(pick_up_center_open_claw)
 
-    def seq_pick_center(self):
-        seq_pick_up_center = self.get_sequence(KnownPositionsManager.CENTER, pick_or_drop=True)
-        self.move_sequence(seq_pick_up_center)
+    def seq_pick_color(self, color_pick):
+        seq_pick_up_color = self.get_sequence(color_pick, pick_or_drop=True)
+        self.move_sequence(seq_pick_up_color)
 
     def seq_pick_color1_color2(self, color_pick, color_drop):
         seq_pick = self.get_sequence(color_pick, pick_or_drop=True)

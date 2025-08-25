@@ -43,7 +43,7 @@ class Commander:
         self.help_map = {
             Commander.COMMAND_MOVE: "($index) ($angle, +, -)",
             Commander.COMMAND_MOVE_6: "($angle1) ($angle2) ($angle3) ($angle4) ($angle5) ($angle6)",
-            Commander.COMMAND_KNOWN: "(home, storage, pick_center, seq_pick_center, seq_pick_$color1_$color2)",
+            Commander.COMMAND_KNOWN: "(home, storage, pick_$color, seq_pick_$color, seq_pick_$color1_$color2)",
             Commander.COMMAND_PHOTO: "",
             Commander.COMMAND_COLOR: "",
             Commander.COMMAND_POSITION_BY_COLOR: "(on off)",
@@ -81,19 +81,30 @@ class Commander:
 
         if subcommand == "home":
             self.known_positions_manager.home()
+
         elif subcommand == "storage":
             self.known_positions_manager.storage()
+
         elif subcommand == "look":
             self.known_positions_manager.look()
-        elif subcommand == "pick_center":
-            self.known_positions_manager.pick_center()
-        elif subcommand == "seq_pick_center":
-            self.known_positions_manager.seq_pick_center()
-        else:
+
+        elif subcommand.startswith("pick_"):
+
             list_tokens = subcommand.split("_")
-            color_pick = list_tokens[2]
-            color_drop = list_tokens[3]
-            self.known_positions_manager.seq_pick_color1_color2(color_pick, color_drop)
+            color_pick = list_tokens[1]
+            self.known_positions_manager.pick_color(color_pick)
+
+        elif subcommand.startswith("seq_pick_"):
+
+            list_tokens = subcommand.split("_")
+
+            if len(list_tokens) == 3:
+                color_pick = list_tokens[2]
+                self.known_positions_manager.seq_pick_color(color_pick)
+            else:
+                color_pick = list_tokens[2]
+                color_drop = list_tokens[3]
+                self.known_positions_manager.seq_pick_color1_color2(color_pick, color_drop)
 
     @staticmethod
     def photo(args):
