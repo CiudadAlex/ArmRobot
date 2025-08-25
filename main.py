@@ -11,7 +11,13 @@ import sys
 
 if __name__ == '__main__':
 
-    print("Argumentos pasados:", sys.argv[0:])
+    num_command_tokens = len(sys.argv)
+    print("Number of command tokens:", num_command_tokens)
+    # mode = sys.argv[1]
+    # print("Argument:", mode)
+
+    # if "minimal" == mode:
+    #     pass
 
     # print("######## Start capturing video")
     # ImageCapturer.get_instance().start_infinite_loop_capture()
