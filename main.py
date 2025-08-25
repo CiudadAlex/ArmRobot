@@ -2,6 +2,7 @@
 from commanders.KeyboardCommander import KeyboardCommander
 from servers import CommandServer
 from sensors.ImageCapturer import ImageCapturer
+import sys
 
 
 # control_pad_manager = ControlPadManager()
@@ -10,11 +11,14 @@ from sensors.ImageCapturer import ImageCapturer
 
 if __name__ == '__main__':
 
-    print("######## Start capturing video")
-    ImageCapturer.get_instance().start_infinite_loop_capture()
+    if len(sys.argv) > 1:
+        print("Primer argumento:", sys.argv[1])
 
-    print("######## Start CommandServer")
-    CommandServer.run_server()
+    # print("######## Start capturing video")
+    # ImageCapturer.get_instance().start_infinite_loop_capture()
+
+    # print("######## Start CommandServer")
+    # CommandServer.run_server()
 
     print("######## Start KeyboardCommander")
     keyboard_commander = KeyboardCommander()
