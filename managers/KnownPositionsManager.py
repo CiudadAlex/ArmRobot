@@ -11,7 +11,7 @@ class KnownPositionsManager:
 
     HOME = [90, 90, 90, 90, 90, 90]
     STORAGE = [90, 180, 0, 0, 90, 180]
-    LOOK = [90, 26, 86,  0, 90, 180]
+    LOOK = [90, 40, 86,  0, 90, 180]
 
     CENTER = "center"
     RED = "red"
@@ -23,8 +23,8 @@ class KnownPositionsManager:
         CENTER:  [90, 26, 86,  0, 90],
         RED:    [115, 20, 76, 40, 90],
         YELLOW:  [65, 20, 76, 40, 90],
-        GREEN:  [135, 40, 50, 40, 90],
-        BLUE:    [45, 40, 50, 40, 90],
+        GREEN:  [135, 60, 30, 20, 90],
+        BLUE:    [45, 60, 30, 20, 90],
     }
 
     MIDDLE_CLOSE_CLAW = [90, 75, 76, 0, 90, CLOSE_CLAW]

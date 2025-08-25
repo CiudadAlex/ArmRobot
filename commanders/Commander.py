@@ -43,7 +43,7 @@ class Commander:
         self.help_map = {
             Commander.COMMAND_MOVE: "($index) ($angle, +, -)",
             Commander.COMMAND_MOVE_6: "($angle1) ($angle2) ($angle3) ($angle4) ($angle5) ($angle6)",
-            Commander.COMMAND_KNOWN: "(home, storage, pick_$color, seq_pick_$color, seq_pick_$color1_$color2)",
+            Commander.COMMAND_KNOWN: "(home, storage, look, pick_$color, seq_pick_$color, seq_pick_$color1_$color2)",
             Commander.COMMAND_PHOTO: "",
             Commander.COMMAND_COLOR: "",
             Commander.COMMAND_POSITION_BY_COLOR: "(on off)",
