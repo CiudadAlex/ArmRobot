@@ -11,8 +11,7 @@ import sys
 
 if __name__ == '__main__':
 
-    if len(sys.argv) > 1:
-        print("Primer argumento:", sys.argv[1])
+    print("Argumentos pasados:", sys.argv[0:])
 
     # print("######## Start capturing video")
     # ImageCapturer.get_instance().start_infinite_loop_capture()
