@@ -7,7 +7,7 @@ class KnownPositionsManager:
     OPEN_CLAW = 90
     CLOSE_CLAW = 135
 
-    POSITION_2_AVOID_TOUCH = 50
+    POSITION_2_AVOID_TOUCH = 70
 
     HOME = [90, 90, 90, 90, 90, 90]
     STORAGE = [90, 180, 0, 0, 90, 180]
