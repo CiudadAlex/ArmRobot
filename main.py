@@ -41,7 +41,6 @@ if __name__ == '__main__':
     keyboard_commander.start()
 
 
-# FIXME test combinations pick-drop
 # FIXME test recognize color of cube in the center
 # FIXME test ControlPadManager
 
