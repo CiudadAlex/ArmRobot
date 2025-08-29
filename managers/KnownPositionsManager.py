@@ -11,7 +11,7 @@ class KnownPositionsManager:
 
     HOME = [90, 90, 90, 90, 90, 90]
     STORAGE = [90, 180, 0, 0, 90, 180]
-    LOOK = [90, 70, 50,  0, 90, 180]
+    LOOK = [90, 70, 35,  0, 90, 180]
 
     CENTER = "center"
     RED = "red"
