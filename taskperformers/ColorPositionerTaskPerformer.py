@@ -43,7 +43,7 @@ class ColorPositionerTaskPerformer:
         color_name = self.get_color_name(avg_color)
 
         if color_name is None:
-            print("No Color detected")
+            print(f"No Color detected: {avg_color}")
         else:
             print(f"Color {color_name} detected")
             self.known_positions_manager.seq_pick_color1_color2(KnownPositionsManager.CENTER, color_name)
