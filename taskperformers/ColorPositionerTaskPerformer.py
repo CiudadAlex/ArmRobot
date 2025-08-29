@@ -45,7 +45,7 @@ class ColorPositionerTaskPerformer:
         if color_name is None:
             print(f"No Color detected: {avg_color}")
         else:
-            print(f"Color {color_name} detected")
+            print(f"Color {color_name} detected: {avg_color}")
             self.known_positions_manager.seq_pick_color1_color2(KnownPositionsManager.CENTER, color_name)
 
     # Red:    (183,   0,  6)
@@ -63,7 +63,7 @@ class ColorPositionerTaskPerformer:
         if r > 120 and g < 50 and b < 50:
             return KnownPositionsManager.RED
 
-        elif r > 70 and g > 70 and b < 50:
+        elif r > 120 and g > 120 and b < 90:
             return KnownPositionsManager.YELLOW
 
         elif r < 20 and g > b + 10:
