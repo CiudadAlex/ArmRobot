@@ -66,10 +66,10 @@ class ColorPositionerTaskPerformer:
         elif r > 120 and g > 120 and b < 90:
             return KnownPositionsManager.YELLOW
 
-        elif r < 20 and g > b + 10:
+        elif g > r + 15 and g > b + 20:
             return KnownPositionsManager.GREEN
 
-        elif r < 20 and b > g + 10:
+        elif b > r + 20 and b > g + 20:
             return KnownPositionsManager.BLUE
 
         return None
