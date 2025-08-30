@@ -7,8 +7,8 @@ class ColorAverager:
     @staticmethod
     def get_average_central_color(path_image, proportion=0.05):
 
-        imagen = Image.open(path_image).convert('RGB')
-        width, height = imagen.size
+        image = Image.open(path_image).convert('RGB')
+        width, height = image.size
 
         window_width = int(width * proportion)
         window_height = int(height * proportion)
@@ -18,7 +18,7 @@ class ColorAverager:
         x1 = x0 + window_width
         y1 = y0 + window_height
 
-        window = imagen.crop((x0, y0, x1, y1))
+        window = image.crop((x0, y0, x1, y1))
 
         pixels = np.array(window)
 
