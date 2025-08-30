@@ -6,6 +6,7 @@ from sensors.ImageCapturer import ImageCapturer
 from datetime import datetime
 from utils.ColorAverager import ColorAverager
 from taskperformers.ColorPositionerTaskPerformer import ColorPositionerTaskPerformer
+from taskperformers.RandomPositionColorPositionerTaskPerformer import RandomPositionColorPositionerTaskPerformer
 
 
 class Commander:
@@ -16,6 +17,7 @@ class Commander:
     COMMAND_PHOTO = "photo"
     COMMAND_COLOR = "color"
     COMMAND_POSITION_BY_COLOR = "position_by_color"
+    COMMAND_RANDOM_PLACE_POSITION_BY_COLOR = "random_position"
     COMMAND_EXIT = "exit"
 
     instance = None
@@ -37,6 +39,7 @@ class Commander:
             Commander.COMMAND_PHOTO: self.photo,
             Commander.COMMAND_COLOR: self.color,
             Commander.COMMAND_POSITION_BY_COLOR: self.position_by_color,
+            Commander.COMMAND_RANDOM_PLACE_POSITION_BY_COLOR: self.random_place_position_by_color,
             Commander.COMMAND_EXIT: self.exit,
         }
 
@@ -47,6 +50,7 @@ class Commander:
             Commander.COMMAND_PHOTO: "",
             Commander.COMMAND_COLOR: "",
             Commander.COMMAND_POSITION_BY_COLOR: "(on off)",
+            Commander.COMMAND_RANDOM_PLACE_POSITION_BY_COLOR: "(on off)",
             Commander.COMMAND_EXIT: "",
         }
 
@@ -127,6 +131,17 @@ class Commander:
             ColorPositionerTaskPerformer.get_instance().start_infinite_loop_check_and_act()
         else:
             ColorPositionerTaskPerformer.get_instance().stop()
+
+    @staticmethod
+    def random_place_position_by_color(args):
+
+        subcommand = args[0]
+
+        if subcommand == "on":
+            RandomPositionColorPositionerTaskPerformer.get_instance().start_infinite_loop_check_and_act()
+        else:
+            RandomPositionColorPositionerTaskPerformer.get_instance().stop()
+
 
     @staticmethod
     def exit(args):
