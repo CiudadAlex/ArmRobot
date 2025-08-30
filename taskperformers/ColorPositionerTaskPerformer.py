@@ -1,5 +1,6 @@
 from managers.KnownPositionsManager import KnownPositionsManager
 from utils.ColorAverager import ColorAverager
+from utils.ColorDeterminer import ColorDeterminer
 import time
 import threading
 
@@ -56,22 +57,16 @@ class ColorPositionerTaskPerformer:
     @staticmethod
     def get_color_name(avg_color):
 
-        r = avg_color[0]
-        g = avg_color[1]
-        b = avg_color[2]
-
-        if r > 120 and g < 50 and b < 50:
+        if ColorDeterminer.is_red(avg_color):
             return KnownPositionsManager.RED
 
-        elif r > 120 and g > 120 and b < 90:
+        elif ColorDeterminer.is_yellow(avg_color):
             return KnownPositionsManager.YELLOW
 
-        elif g > r + 15 and g > b + 20:
+        elif ColorDeterminer.is_green(avg_color):
             return KnownPositionsManager.GREEN
 
-        elif b > r + 20 and b > g + 20:
+        elif ColorDeterminer.is_blue(avg_color):
             return KnownPositionsManager.BLUE
 
         return None
-
-
