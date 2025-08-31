@@ -22,6 +22,7 @@ class RandomPositionColorPositionerTaskPerformer:
         self.thread = None
         self.arm_motor = ArmMotor.get_instance()
         self.filter_of_pixels = ColorDeterminer.is_red
+        self.color = KnownPositionsManager.RED
 
     def start_infinite_loop_check_and_act(self):
         self.thread = threading.Thread(target=self.infinite_loop_check_and_act)
@@ -42,12 +43,19 @@ class RandomPositionColorPositionerTaskPerformer:
 
         if KnownPositionsManager.RED == color:
             self.filter_of_pixels = ColorDeterminer.is_red
+            self.color = color
+
         elif KnownPositionsManager.YELLOW == color:
             self.filter_of_pixels = ColorDeterminer.is_yellow
+            self.color = color
+
         elif KnownPositionsManager.GREEN == color:
             self.filter_of_pixels = ColorDeterminer.is_green
+            self.color = color
+
         elif KnownPositionsManager.BLUE == color:
             self.filter_of_pixels = ColorDeterminer.is_blue
+            self.color = color
 
     def get_color_vectorial_position(self):
         return ImagePositionDiscoverer.get_vectorial_position_of_filtered_pixels("./capture.jpg", filter_of_pixels=self.filter_of_pixels)
