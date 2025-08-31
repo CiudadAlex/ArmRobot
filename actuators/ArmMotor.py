@@ -16,7 +16,7 @@ class ArmMotor:
             ArmMotor.instance = ArmMotor()
         return ArmMotor.instance
 
-    def __init__(self, s_step=2):
+    def __init__(self, s_step=10):
 
         self.Arm = Arm_Device()
 
@@ -46,6 +46,7 @@ class ArmMotor:
             self.map_index_angle[index] -= self.s_step
 
         self.position_servo(index)
+        return self.map_index_angle[index]
 
     def move_to_position(self, index, angle):
 

@@ -1,6 +1,7 @@
 from managers.KnownPositionsManager import KnownPositionsManager
 from utils.ImagePositionDiscoverer import ImagePositionDiscoverer
 from utils.ColorDeterminer import ColorDeterminer
+from actuators.ArmMotor import ArmMotor
 import time
 import threading
 
@@ -19,6 +20,8 @@ class RandomPositionColorPositionerTaskPerformer:
         self.known_positions_manager = KnownPositionsManager.get_instance()
         self.running = False
         self.thread = None
+        self.arm_motor = ArmMotor.get_instance()
+        self.filter_of_pixels = ColorDeterminer.is_red
 
     def start_infinite_loop_check_and_act(self):
         self.thread = threading.Thread(target=self.infinite_loop_check_and_act)
@@ -35,13 +38,30 @@ class RandomPositionColorPositionerTaskPerformer:
     def stop(self):
         self.running = False
 
+    def get_color_average_position(self):
+        return ImagePositionDiscoverer.get_central_position_of_filtered_pixels("./capture.jpg", filter_of_pixels=self.filter_of_pixels)
+
     def check_and_act(self):
 
         self.known_positions_manager.look()
         time.sleep(5)
 
-        average_position = ImagePositionDiscoverer.get_central_position_of_filtered_pixels("./capture.jpg", filter_of_pixels=ColorDeterminer.is_red)
+        average_position = self.get_color_average_position()
 
+        if average_position is None:
+            current_angle, current_dir_asc = self.search_cube(90, current_dir_asc=True)
+            time.sleep(2)
 
+    def search_cube(self, current_angle, current_dir_asc):
+
+        if current_angle > 115:
+            angle1 = self.arm_motor.move(1, more_or_less=False)
+            return angle1, False
+        elif current_angle < 65:
+            angle1 = self.arm_motor.move(1, more_or_less=True)
+            return angle1, True
+
+        angle1 = self.arm_motor.move(1, more_or_less=current_dir_asc)
+        return angle1, current_dir_asc
 
 
