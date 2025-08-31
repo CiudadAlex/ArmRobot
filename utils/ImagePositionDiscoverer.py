@@ -40,4 +40,4 @@ class ImagePositionDiscoverer:
 
         x = (central_position[1] - width/2) / width
         y = (height - central_position[0] - height/2) / height
-        return x, y
+        return 100 * x, 100 * y
