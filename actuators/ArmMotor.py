@@ -16,7 +16,7 @@ class ArmMotor:
             ArmMotor.instance = ArmMotor()
         return ArmMotor.instance
 
-    def __init__(self, s_step=10):
+    def __init__(self, s_step=7):
 
         self.Arm = Arm_Device()
 
