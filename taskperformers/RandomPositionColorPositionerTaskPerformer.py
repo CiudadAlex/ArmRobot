@@ -45,10 +45,13 @@ class RandomPositionColorPositionerTaskPerformer:
 
         vectorial_position = self.search_cube_until_finding()
 
+        if not self.running:
+            return
+
         # Cube found. Get it in the center
         print(f"Cube found. Center in vectorial position: {vectorial_position}")
 
-        # Rojo izquierda. Amarillo derecha
+        # Red to the left. Yellow to the right
 
     def search_cube_until_finding(self):
 
