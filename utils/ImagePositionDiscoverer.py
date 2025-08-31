@@ -22,10 +22,22 @@ class ImagePositionDiscoverer:
                     filtered_pixels_coords.append((y, x))  # or (row, col)
 
         if len(filtered_pixels_coords) < 100:
-            return None  # very few pixels passed the filter
+            return None, height, width  # very few pixels passed the filter
 
         # Convert list to numpy array and calculate mean
         filtered_pixels_coords_np = np.array(filtered_pixels_coords)
         average_position = filtered_pixels_coords_np.mean(axis=0)
 
-        return tuple(average_position)
+        return tuple(average_position), height, width
+
+    @staticmethod
+    def get_vectorial_position_of_filtered_pixels(image_path, filter_of_pixels):
+
+        central_position, height, width = ImagePositionDiscoverer.get_central_position_of_filtered_pixels(image_path, filter_of_pixels)
+
+        if central_position is None:
+            return None
+
+        x = (central_position[1] - width/2) / width
+        y = (height - central_position[0] - height/2) / height
+        return x, y

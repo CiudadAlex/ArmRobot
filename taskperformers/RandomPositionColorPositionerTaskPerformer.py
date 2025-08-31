@@ -38,8 +38,8 @@ class RandomPositionColorPositionerTaskPerformer:
     def stop(self):
         self.running = False
 
-    def get_color_average_position(self):
-        return ImagePositionDiscoverer.get_central_position_of_filtered_pixels("./capture.jpg", filter_of_pixels=self.filter_of_pixels)
+    def get_color_vectorial_position(self):
+        return ImagePositionDiscoverer.get_vectorial_position_of_filtered_pixels("./capture.jpg", filter_of_pixels=self.filter_of_pixels)
 
     def check_and_act(self):
 
@@ -49,15 +49,15 @@ class RandomPositionColorPositionerTaskPerformer:
 
         time.sleep(5)
 
-        average_position = self.get_color_average_position()
+        vectorial_position = self.get_color_vectorial_position()
 
-        while average_position is None:
+        while vectorial_position is None:
             current_angle, current_dir_asc = self.search_cube(current_angle, current_dir_asc=current_dir_asc)
             time.sleep(2)
-            average_position = self.get_color_average_position()
+            vectorial_position = self.get_color_vectorial_position()
 
         # Cube found. Get it in the center
-        print(f"Cube found. Center in: {average_position}")
+        print(f"Cube found. Center in vectorial position: {vectorial_position}")
 
 
 
