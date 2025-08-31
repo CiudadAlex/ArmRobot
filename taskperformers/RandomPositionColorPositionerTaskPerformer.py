@@ -78,10 +78,20 @@ class RandomPositionColorPositionerTaskPerformer:
         # Cube centered
         print(f"Cube centered: {vectorial_position}")
 
-        # FIXME Catch cube
+        # Catch cube
+        self.catch_cube()
 
         # Transport cube
         self.known_positions_manager.seq_drop_color(self.color)
+
+    def catch_cube(self):
+
+        self.arm_motor.move_to_position(index=6, angle=KnownPositionsManager.OPEN_CLAW)
+        time.sleep(1.5)
+        self.arm_motor.move_to_position(index=2, angle=26)
+        time.sleep(1.5)
+        self.arm_motor.move_to_position(index=6, angle=KnownPositionsManager.CLOSE_CLAW)
+        time.sleep(1.5)
 
     def center_arm_until_centered(self):
 
@@ -112,6 +122,8 @@ class RandomPositionColorPositionerTaskPerformer:
         elif y < -15:
             self.arm_motor.move(2, more_or_less=True)
             moved = True
+
+        time.sleep(2)
 
         return moved
 

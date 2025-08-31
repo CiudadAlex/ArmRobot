@@ -41,7 +41,7 @@ if __name__ == '__main__':
     keyboard_commander.start()
 
 
-# FIXME pick cube in random location
+# FIXME test pick cube in random location
 
 # FIXME test ControlPadManager
 
