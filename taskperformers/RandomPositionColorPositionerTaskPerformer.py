@@ -43,25 +43,31 @@ class RandomPositionColorPositionerTaskPerformer:
 
     def check_and_act(self):
 
-        self.known_positions_manager.look()
-        current_angle = KnownPositionsManager.LOOK[0]
-        current_dir_asc = True
-
-        time.sleep(5)
-
-        vectorial_position = self.get_color_vectorial_position()
-
-        while vectorial_position is None:
-            current_angle, current_dir_asc = self.search_cube(current_angle, current_dir_asc=current_dir_asc)
-            time.sleep(2)
-            vectorial_position = self.get_color_vectorial_position()
+        vectorial_position = self.search_cube_until_finding()
 
         # Cube found. Get it in the center
         print(f"Cube found. Center in vectorial position: {vectorial_position}")
 
+        # Rojo izquierda. Amarillo derecha
 
+    def search_cube_until_finding(self):
 
-    def search_cube(self, current_angle, current_dir_asc):
+        self.known_positions_manager.look()
+        current_angle = KnownPositionsManager.LOOK[0]
+        current_dir_asc = True
+
+        time.sleep(3)
+
+        vectorial_position = self.get_color_vectorial_position()
+
+        while self.running and vectorial_position is None:
+            current_angle, current_dir_asc = self.search_cube_step(current_angle, current_dir_asc=current_dir_asc)
+            time.sleep(2)
+            vectorial_position = self.get_color_vectorial_position()
+
+        return vectorial_position
+
+    def search_cube_step(self, current_angle, current_dir_asc):
 
         if current_angle > 115:
             angle1 = self.arm_motor.move(1, more_or_less=False)
