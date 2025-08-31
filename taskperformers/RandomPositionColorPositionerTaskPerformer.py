@@ -1,5 +1,6 @@
 from managers.KnownPositionsManager import KnownPositionsManager
 from utils.ImagePositionDiscoverer import ImagePositionDiscoverer
+from utils.ColorDeterminer import ColorDeterminer
 import time
 import threading
 
@@ -38,5 +39,9 @@ class RandomPositionColorPositionerTaskPerformer:
 
         self.known_positions_manager.look()
         time.sleep(5)
+
+        average_position = ImagePositionDiscoverer.get_central_position_of_filtered_pixels("./capture.jpg", filter_of_pixels=ColorDeterminer.is_red)
+
+
 
 
