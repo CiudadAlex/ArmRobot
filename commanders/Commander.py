@@ -50,7 +50,7 @@ class Commander:
             Commander.COMMAND_PHOTO: "",
             Commander.COMMAND_COLOR: "",
             Commander.COMMAND_POSITION_BY_COLOR: "(on off)",
-            Commander.COMMAND_RANDOM_PLACE_POSITION_BY_COLOR: "(on off)",
+            Commander.COMMAND_RANDOM_PLACE_POSITION_BY_COLOR: "(on off) ($color)",
             Commander.COMMAND_EXIT: "",
         }
 
@@ -138,10 +138,12 @@ class Commander:
         subcommand = args[0]
 
         if subcommand == "on":
-            RandomPositionColorPositionerTaskPerformer.get_instance().start_infinite_loop_check_and_act()
+            color = args[1]
+            task_performer = RandomPositionColorPositionerTaskPerformer.get_instance()
+            task_performer.set_color(color)
+            task_performer.start_infinite_loop_check_and_act()
         else:
             RandomPositionColorPositionerTaskPerformer.get_instance().stop()
-
 
     @staticmethod
     def exit(args):

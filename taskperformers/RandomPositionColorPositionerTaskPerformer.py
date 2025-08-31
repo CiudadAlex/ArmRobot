@@ -38,6 +38,17 @@ class RandomPositionColorPositionerTaskPerformer:
     def stop(self):
         self.running = False
 
+    def set_color(self, color):
+
+        if KnownPositionsManager.RED == color:
+            self.filter_of_pixels = ColorDeterminer.is_red
+        elif KnownPositionsManager.YELLOW == color:
+            self.filter_of_pixels = ColorDeterminer.is_yellow
+        elif KnownPositionsManager.GREEN == color:
+            self.filter_of_pixels = ColorDeterminer.is_green
+        elif KnownPositionsManager.BLUE == color:
+            self.filter_of_pixels = ColorDeterminer.is_blue
+
     def get_color_vectorial_position(self):
         return ImagePositionDiscoverer.get_vectorial_position_of_filtered_pixels("./capture.jpg", filter_of_pixels=self.filter_of_pixels)
 
@@ -58,6 +69,8 @@ class RandomPositionColorPositionerTaskPerformer:
 
         # Cube centered
         print(f"Cube centered: {vectorial_position}")
+
+        # FIXME Catch cube
 
     def center_arm_until_centered(self):
 
