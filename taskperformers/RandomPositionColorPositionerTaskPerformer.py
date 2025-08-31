@@ -80,6 +80,9 @@ class RandomPositionColorPositionerTaskPerformer:
 
         # FIXME Catch cube
 
+        # Transport cube
+        self.known_positions_manager.seq_drop_color(self.color)
+
     def center_arm_until_centered(self):
 
         moved = self.center_arm_step()

@@ -103,6 +103,10 @@ class KnownPositionsManager:
         seq_pick_up_color = self.get_sequence(color_pick, pick_or_drop=True)
         self.move_sequence(seq_pick_up_color)
 
+    def seq_drop_color(self, color_drop):
+        seq_drop_color = self.get_sequence(color_drop, pick_or_drop=False)
+        self.move_sequence(seq_drop_color)
+
     def seq_pick_color1_color2(self, color_pick, color_drop):
         seq_pick = self.get_sequence(color_pick, pick_or_drop=True)
         seq_drop = self.get_sequence(color_drop, pick_or_drop=False)
