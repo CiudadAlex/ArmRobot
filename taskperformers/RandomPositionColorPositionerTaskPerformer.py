@@ -44,13 +44,22 @@ class RandomPositionColorPositionerTaskPerformer:
     def check_and_act(self):
 
         self.known_positions_manager.look()
+        current_angle = KnownPositionsManager.LOOK[0]
+        current_dir_asc = True
+
         time.sleep(5)
 
         average_position = self.get_color_average_position()
 
-        if average_position is None:
-            current_angle, current_dir_asc = self.search_cube(90, current_dir_asc=True)
+        while average_position is None:
+            current_angle, current_dir_asc = self.search_cube(current_angle, current_dir_asc=current_dir_asc)
             time.sleep(2)
+            average_position = self.get_color_average_position()
+
+        # Cube found. Get it in the center
+        print(f"Cube found. Center in: {average_position}")
+
+
 
     def search_cube(self, current_angle, current_dir_asc):
 

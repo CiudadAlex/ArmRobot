@@ -21,8 +21,8 @@ class ImagePositionDiscoverer:
                 if filter_of_pixels(pixel):
                     filtered_pixels_coords.append((y, x))  # or (row, col)
 
-        if not filtered_pixels_coords:
-            return None  # No pixels passed the filter
+        if len(filtered_pixels_coords) < 100:
+            return None  # very few pixels passed the filter
 
         # Convert list to numpy array and calculate mean
         filtered_pixels_coords_np = np.array(filtered_pixels_coords)
