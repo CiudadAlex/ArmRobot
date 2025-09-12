@@ -104,27 +104,28 @@ class RandomPositionColorPositionerTaskPerformer:
 
         return self.get_color_vectorial_position()
 
-    def center_arm_step(self):
+    def center_arm_step(self, center_x=True, center_y=False):
 
         vectorial_position = self.get_color_vectorial_position()
         x, y = vectorial_position
         moved = False
 
         # Red to the left. Yellow to the right
+        if center_x:
+            if x > 15:
+                self.arm_motor.move(1, more_or_less=False)
+                moved = True
+            elif x < -15:
+                self.arm_motor.move(1, more_or_less=True)
+                moved = True
 
-        if x > 15:
-            self.arm_motor.move(1, more_or_less=False)
-            moved = True
-        elif x < -15:
-            self.arm_motor.move(1, more_or_less=True)
-            moved = True
-
-        if y > 15:
-            self.arm_motor.move(2, more_or_less=True)
-            moved = True
-        elif y < -15:
-            self.arm_motor.move(2, more_or_less=True)
-            moved = True
+        if center_y:
+            if y > 15:
+                self.arm_motor.move(2, more_or_less=True)
+                moved = True
+            elif y < -15:
+                self.arm_motor.move(2, more_or_less=True)
+                moved = True
 
         time.sleep(2)
 
