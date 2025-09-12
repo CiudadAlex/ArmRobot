@@ -68,7 +68,7 @@ class RandomPositionColorPositionerTaskPerformer:
             return
 
         # Cube found
-        print(f"Cube found. Center in vectorial position: {vectorial_position}")
+        print(f"$$$$$$$$$$$$$$$$$$$$ Cube found. Center in vectorial position: {vectorial_position}")
 
         vectorial_position = self.center_arm_until_centered()
 
@@ -76,7 +76,7 @@ class RandomPositionColorPositionerTaskPerformer:
             return
 
         # Cube centered
-        print(f"Cube centered: {vectorial_position}")
+        print(f"$$$$$$$$$$$$$$$$$$$$ Cube centered: {vectorial_position}")
 
         # Catch cube
         self.catch_cube()
@@ -106,7 +106,8 @@ class RandomPositionColorPositionerTaskPerformer:
 
     def center_arm_step(self):
 
-        x, y = self.get_color_vectorial_position()
+        vectorial_position = self.get_color_vectorial_position()
+        x, y = vectorial_position
         moved = False
 
         # Red to the left. Yellow to the right
