@@ -88,8 +88,8 @@ class RandomPositionColorPositionerTaskPerformer:
 
         self.arm_motor.move_to_position(index=6, angle=KnownPositionsManager.WIDE_OPEN_CLAW)
         time.sleep(1.5)
-        self.arm_motor.move_to_position(index=3, angle=80)
-        self.arm_motor.move_to_position(index=2, angle=26)
+        self.arm_motor.move_to_position(index=3, angle=82)
+        self.arm_motor.move_to_position(index=2, angle=28)
         time.sleep(1.5)
         self.arm_motor.move_to_position(index=6, angle=KnownPositionsManager.CLOSE_CLAW)
         time.sleep(1.5)
