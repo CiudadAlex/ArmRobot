@@ -5,6 +5,7 @@ import time
 class KnownPositionsManager:
 
     OPEN_CLAW = 90
+    WIDE_OPEN_CLAW = 0
     CLOSE_CLAW = 135
 
     POSITION_2_AVOID_TOUCH = 70

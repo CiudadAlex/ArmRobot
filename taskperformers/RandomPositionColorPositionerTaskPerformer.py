@@ -86,7 +86,7 @@ class RandomPositionColorPositionerTaskPerformer:
 
     def catch_cube(self):
 
-        self.arm_motor.move_to_position(index=6, angle=KnownPositionsManager.OPEN_CLAW)
+        self.arm_motor.move_to_position(index=6, angle=KnownPositionsManager.WIDE_OPEN_CLAW)
         time.sleep(1.5)
         self.arm_motor.move_to_position(index=3, angle=86)
         self.arm_motor.move_to_position(index=2, angle=26)
