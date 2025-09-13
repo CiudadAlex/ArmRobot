@@ -1,12 +1,8 @@
-# from managers.ControlPadManager import ControlPadManager
 from commanders.KeyboardCommander import KeyboardCommander
 from servers import CommandServer
 from sensors.ImageCapturer import ImageCapturer
 import sys
 
-
-# control_pad_manager = ControlPadManager()
-# control_pad_manager.start_control()
 
 MODE_DEFAULT = "default"
 MODE_MINIMAL = "minimal"
@@ -39,9 +35,3 @@ if __name__ == '__main__':
     print("######## Start KeyboardCommander")
     keyboard_commander = KeyboardCommander()
     keyboard_commander.start()
-
-
-# FIXME test pick cube in random location
-
-# FIXME test ControlPadManager
-
